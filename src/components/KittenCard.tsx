@@ -1,7 +1,8 @@
 import React from 'react';
-import { Kitten } from '../types/kitten';
+import { Heart, ShoppingCart, Check } from 'lucide-react';
+import { Kitten } from '../data/kittens';
 import { useCart } from '../contexts/CartContext';
-import { Heart, ShoppingCart, Star } from 'lucide-react';
+import { toast } from 'sonner';
 
 interface KittenCardProps {
   kitten: Kitten;
@@ -10,64 +11,78 @@ interface KittenCardProps {
 const KittenCard: React.FC<KittenCardProps> = ({ kitten }) => {
   const { addToCart } = useCart();
 
+  console.log('KittenCard rendered for:', kitten.name);
+
   const handleAddToCart = () => {
-    console.log('Adding to cart button clicked for:', kitten.name);
+    console.log('Adding kitten to cart:', kitten.name);
     addToCart(kitten);
+    toast.success(`${kitten.name} agregado al carrito! 🐱`, {
+      description: `${kitten.breed} - $${kitten.price}`,
+    });
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+    <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
       <div className="relative">
         <img 
           src={kitten.image} 
           alt={kitten.name}
           className="w-full h-48 object-cover"
         />
-        <div className="absolute top-2 right-2">
-          <button className="bg-white/80 hover:bg-white p-2 rounded-full transition-colors">
-            <Heart className="w-4 h-4 text-gray-600 hover:text-red-500" />
-          </button>
+        <div className="absolute top-3 right-3">
+          <div className="bg-white rounded-full p-2 shadow-md">
+            <Heart className="w-4 h-4 text-gray-400 hover:text-red-500 cursor-pointer transition-colors" />
+          </div>
         </div>
         {kitten.vaccinated && (
-          <div className="absolute top-2 left-2 bg-green-500 text-white px-2 py-1 rounded-full text-xs font-semibold">
-            Vacunado
+          <div className="absolute top-3 left-3">
+            <div className="bg-green-500 text-white px-2 py-1 rounded-full text-xs flex items-center">
+              <Check className="w-3 h-3 mr-1" />
+              Vacunado
+            </div>
           </div>
         )}
       </div>
       
-      <div className="p-4">
+      <div className="p-6">
         <div className="flex justify-between items-start mb-2">
-          <h3 className="text-lg font-bold text-gray-800">{kitten.name}</h3>
-          <div className="flex items-center">
-            <Star className="w-4 h-4 text-yellow-400 fill-current" />
-            <span className="text-sm text-gray-600 ml-1">4.8</span>
+          <h3 className="text-xl font-bold text-gray-800">{kitten.name}</h3>
+          <span className="text-2xl font-bold text-purple-600">${kitten.price}</span>
+        </div>
+        
+        <div className="flex items-center text-sm text-gray-600 mb-3">
+          <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded-full mr-2">
+            {kitten.breed}
+          </span>
+          <span className="bg-pink-100 text-pink-800 px-2 py-1 rounded-full mr-2">
+            {kitten.age}
+          </span>
+          <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+            {kitten.gender}
+          </span>
+        </div>
+        
+        <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+          {kitten.description}
+        </p>
+        
+        <div className="mb-4">
+          <div className="flex flex-wrap gap-1">
+            {kitten.personality.map((trait, index) => (
+              <span key={index} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
+                {trait}
+              </span>
+            ))}
           </div>
         </div>
         
-        <p className="text-sm text-gray-600 mb-1">Raza: {kitten.breed}</p>
-        <p className="text-sm text-gray-600 mb-1">Edad: {kitten.age}</p>
-        <p className="text-sm text-gray-600 mb-1">Color: {kitten.color}</p>
-        <p className="text-sm text-gray-600 mb-3">Género: {kitten.gender}</p>
-        
-        <p className="text-sm text-gray-700 mb-4 line-clamp-2">{kitten.description}</p>
-        
-        <div className="flex justify-between items-center">
-          <div className="text-2xl font-bold text-purple-600">
-            €{kitten.price}
-          </div>
-          <button
-            onClick={handleAddToCart}
-            disabled={!kitten.available}
-            className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-semibold transition-colors ${
-              kitten.available
-                ? 'bg-purple-600 hover:bg-purple-700 text-white'
-                : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-            }`}
-          >
-            <ShoppingCart className="w-4 h-4" />
-            <span>{kitten.available ? 'Adoptar' : 'No disponible'}</span>
-          </button>
-        </div>
+        <button
+          onClick={handleAddToCart}
+          className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-2 px-4 rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-200 flex items-center justify-center space-x-2"
+        >
+          <ShoppingCart className="w-4 h-4" />
+          <span>Adoptar</span>
+        </button>
       </div>
     </div>
   );

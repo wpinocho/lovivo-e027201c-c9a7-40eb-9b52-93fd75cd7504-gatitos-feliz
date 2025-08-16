@@ -1,4 +1,16 @@
-import { Kitten } from '../types/kitten';
+export interface Kitten {
+  id: number;
+  name: string;
+  breed: string;
+  age: string;
+  gender: string;
+  price: number;
+  image: string;
+  description: string;
+  available: boolean;
+  vaccinated: boolean;
+  personality: string[];
+}
 
 export const kittens: Kitten[] = [
   {
@@ -6,77 +18,77 @@ export const kittens: Kitten[] = [
     name: "Luna",
     breed: "Persa",
     age: "3 meses",
-    price: 450,
-    image: "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400&h=300&fit=crop",
-    description: "Gatita persa muy cariñosa y juguetona. Le encanta dormir en lugares cálidos.",
-    color: "Gris",
     gender: "Hembra",
+    price: 800,
+    image: "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400&h=300&fit=crop",
+    description: "Luna es una gatita persa muy cariñosa y tranquila. Le encanta que la mimen y es perfecta para familias con niños.",
+    available: true,
     vaccinated: true,
-    available: true
+    personality: ["Cariñosa", "Tranquila", "Juguetona"]
   },
   {
     id: 2,
     name: "Simba",
     breed: "Maine Coon",
     age: "4 meses",
-    price: 650,
-    image: "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?w=400&h=300&fit=crop",
-    description: "Gatito Maine Coon muy activo y sociable. Perfecto para familias con niños.",
-    color: "Naranja",
     gender: "Macho",
+    price: 1200,
+    image: "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?w=400&h=300&fit=crop",
+    description: "Simba es un Maine Coon majestuoso con un carácter noble. Es muy inteligente y le gusta explorar.",
+    available: true,
     vaccinated: true,
-    available: true
+    personality: ["Inteligente", "Explorador", "Noble"]
   },
   {
     id: 3,
     name: "Mimi",
     breed: "Siamés",
     age: "2 meses",
-    price: 380,
-    image: "https://images.unsplash.com/photo-1513245543132-31f507417b26?w=400&h=300&fit=crop",
-    description: "Gatita siamesa muy inteligente y vocal. Le gusta comunicarse con sus dueños.",
-    color: "Crema",
     gender: "Hembra",
-    vaccinated: false,
-    available: true
+    price: 600,
+    image: "https://images.unsplash.com/photo-1513245543132-31f507417b26?w=400&h=300&fit=crop",
+    description: "Mimi es una siamesa muy vocal y sociable. Le encanta la compañía humana y es muy expresiva.",
+    available: true,
+    vaccinated: true,
+    personality: ["Vocal", "Sociable", "Expresiva"]
   },
   {
     id: 4,
-    name: "Felix",
-    breed: "Británico de pelo corto",
+    name: "Garfield",
+    breed: "Británico",
     age: "5 meses",
-    price: 520,
-    image: "https://images.unsplash.com/photo-1596854407944-bf87f6fdd49e?w=400&h=300&fit=crop",
-    description: "Gatito británico muy tranquilo y elegante. Ideal para apartamentos.",
-    color: "Gris azulado",
     gender: "Macho",
+    price: 900,
+    image: "https://images.unsplash.com/photo-1596854407944-bf87f6fdd49e?w=400&h=300&fit=crop",
+    description: "Garfield es un gato británico de pelo corto muy relajado. Le gusta dormir y comer, perfecto para hogares tranquilos.",
+    available: true,
     vaccinated: true,
-    available: true
+    personality: ["Relajado", "Tranquilo", "Dormilón"]
   },
   {
     id: 5,
-    name: "Coco",
-    breed: "Ragdoll",
+    name: "Nala",
+    breed: "Bengalí",
     age: "3 meses",
-    price: 580,
-    image: "https://images.unsplash.com/photo-1571566882372-1598d88abd90?w=400&h=300&fit=crop",
-    description: "Gatita Ragdoll muy dócil y relajada. Se deja manipular fácilmente.",
-    color: "Blanco y marrón",
     gender: "Hembra",
+    price: 1500,
+    image: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=400&h=300&fit=crop",
+    description: "Nala es una bengalí muy activa y atlética. Le encanta trepar y jugar, ideal para familias activas.",
+    available: true,
     vaccinated: true,
-    available: true
+    personality: ["Activa", "Atlética", "Trepadora"]
   },
   {
     id: 6,
-    name: "Tiger",
-    breed: "Bengalí",
+    name: "Oliver",
+    breed: "Ragdoll",
     age: "4 meses",
-    price: 750,
-    image: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=400&h=300&fit=crop",
-    description: "Gatito bengalí con hermosas manchas. Muy activo y aventurero.",
-    color: "Dorado con manchas",
     gender: "Macho",
+    price: 1100,
+    image: "https://images.unsplash.com/photo-1571566882372-1598d88abd90?w=400&h=300&fit=crop",
+    description: "Oliver es un Ragdoll muy dócil y cariñoso. Se deja manipular como un muñeco de trapo y es perfecto para niños.",
+    available: true,
     vaccinated: true,
-    available: true
+    personality: ["Dócil", "Cariñoso", "Paciente"]
   }
 ];
